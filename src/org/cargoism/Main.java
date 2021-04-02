@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         Generator generator = new Generator(30);
 
-        var ships = generator.generateSchedule();
+        var ships = generator.generateSchedule(40);
 
         Storage storage = new Storage();
 

@@ -19,6 +19,9 @@ public class Ship {
      */
     private int arrivalMinutes;
 
+    /**
+     * Randomized unload overtime on arrival
+     */
     private int unloadOvertime;
 
     @Override

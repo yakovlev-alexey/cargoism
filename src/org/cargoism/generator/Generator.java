@@ -17,8 +17,8 @@ public class Generator {
         this.daysCount = daysCount;
     }
 
-    public Ship[] generateSchedule() {
-        return IntStream.range(1, 101).mapToObj((i) -> {
+    public Ship[] generateSchedule(int shipCount) {
+        return IntStream.range(1, shipCount + 1).mapToObj((i) -> {
             Cargo cargo = new Cargo(
                     CargoType.values()[random.nextInt(3)],
                     random.nextInt(1000) + 1

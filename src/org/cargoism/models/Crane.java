@@ -1,6 +1,7 @@
 package org.cargoism.models;
 
 import lombok.Setter;
+import org.cargoism.utils.Utils;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,6 +15,9 @@ public class Crane implements Callable<List<Unload>> {
 
     private int lastUnload = 0;
 
+    /**
+     * Units/tons per hour
+     */
     private final double efficiency;
 
     public Crane(double efficiency) {
@@ -35,7 +39,7 @@ public class Crane implements Callable<List<Unload>> {
 
             int unloadStart = Math.max(lastUnload, arrival);
 
-            int plannedDuration = ((int) Math.ceil(ship.getCargo().getCount() / efficiency));
+            int plannedDuration = ((int) Math.ceil(ship.getCargo().getCount() / efficiency)) * Utils.MINUTES_IN_HOUR;
 
             int unloadFinish = unloadStart + plannedDuration  + ship.getUnloadOvertime();
 
@@ -43,7 +47,7 @@ public class Crane implements Callable<List<Unload>> {
 
             int unloadOvertime = ship.getUnloadOvertime() + unloadStart - arrival;
 
-            Unload unload = new Unload(ship.getName(), arrival, unloadStart, unloadFinish, unloadOvertime);
+            Unload unload = new Unload(ship.getName(), ship.getCargo(), arrival, unloadStart, unloadFinish, unloadOvertime);
 
             unloads.add(unload);
         }

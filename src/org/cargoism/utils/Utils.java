@@ -8,8 +8,12 @@ public class Utils {
 
     public static final int MINUTES_IN_DAY = MINUTES_IN_HOUR * HOURS_IN_DAY;
 
+    public static String padLeft(String string, int length, char symbol) {
+        return String.format("%1$" + length + "s", string).replace(' ', symbol);
+    }
+
     public static String padLeftZeroes(String string, int length) {
-        return String.format("%1$" + length + "s", string).replace(' ', '0');
+        return padLeft(string, length, '0');
     }
 
     public static int minutesToDays(int minutes) {

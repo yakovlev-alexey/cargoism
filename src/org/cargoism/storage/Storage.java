@@ -1,6 +1,7 @@
 package org.cargoism.storage;
 
 import com.google.gson.Gson;
+import org.cargoism.models.Ship;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +11,9 @@ public class Storage {
     Gson gson = new Gson();
 
     public void storeJson(Object[] objects, String path) throws IOException {
-        gson.toJson(objects, new FileWriter(path));
+        try (var writer = new FileWriter(path)) {
+            gson.toJson(objects, writer);
+        }
     }
 
     public <T> T loadJson(Type type, String path) {

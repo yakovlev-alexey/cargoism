@@ -1,6 +1,7 @@
 package org.cargoism.simulator;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.cargoism.models.*;
 import org.cargoism.utils.Utils;
 
@@ -28,16 +29,28 @@ public class Simulator {
         this.ships = randomizeSchedule(ships);
     }
 
+    @Getter
+    @Setter
+    private int containerCraneEfficiency = 20;
+
     private Crane getContainerCrane() {
-        return new Crane(40);
+        return new Crane(containerCraneEfficiency);
     }
+
+    @Getter
+    @Setter
+    private int bulkCraneEfficiency = 25;
 
     private Crane getBulkCrane() {
-        return new Crane(50);
+        return new Crane(bulkCraneEfficiency);
     }
 
+    @Getter
+    @Setter
+    private int liquidCraneEfficiency = 30;
+
     private Crane getLiquidCrane() {
-        return new Crane(60);
+        return new Crane(liquidCraneEfficiency);
     }
 
     private List<Ship> randomizeSchedule(Ship[] ships) {

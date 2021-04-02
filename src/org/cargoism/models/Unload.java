@@ -4,11 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.cargoism.utils.Utils;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 @Data
 @AllArgsConstructor
 public class Unload {
 
     private String shipName;
+
+    private Cargo cargo;
 
     private int arrivalMinutes;
 
@@ -20,7 +25,8 @@ public class Unload {
 
     @Override
     public String toString() {
-        return shipName + " arrived " + Utils.formatTime(arrivalMinutes)
+        return shipName + " with " + cargo
+                + " arrived " + Utils.formatTime(arrivalMinutes)
                 + ", unload started " + Utils.formatTime(unloadStartMinutes)
                 + " and finished " + Utils.formatTime(unloadFinishMinutes)
                 + ", total overtime is " + Utils.formatTime(unloadOvertimeMinutes);
